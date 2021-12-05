@@ -15,5 +15,5 @@ fun main() {
     println(strings.last())
 
     val numbers = setOf(1, 14, 2)
-    println(numbers.max())
+    // println(numbers.max()) // 1.4에서 deprecated 되었고, 1.6에서 아예 사라짐
 }
