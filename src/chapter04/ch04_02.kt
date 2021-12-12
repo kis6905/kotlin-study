@@ -20,6 +20,8 @@ fun main() {
 //    val nickname = _nickname
 //}
 
+//class User(val nickname: String)
+
 open class User(val nickname: String, val email: String = "@", val isSubscribed: Boolean = false) {
     constructor() : this("default") // 부 생성자
 
