@@ -9,8 +9,13 @@ fun main() {
     println("\n===== null 이 될 수 있는 타입")
     val strLen = { s: String -> s.length } // null 불가능
 //    strLen(null) // 컴파일 에러
+    var aa: String? = "123"
+    if (aa != null) // null 체크를 하면 notnull 처럼 사용할수 있다
+        println(strLen(aa))
+
     val strLenSafe = { s: String? -> if (s!= null) s.length else 0 } // null 이 올 수 있기때문에 체크
     println(strLenSafe(null))
+
 
     // 안전한 호출 연산자: ?.
     println("\n===== 안전한 호출 연산자")
@@ -34,7 +39,7 @@ fun main() {
     println(strLenSafe2("leaf"))
     println(strLenSafe2(null))
 
-//    val strLenSafe3 = { s:String? -> s?.length ?: throw IllegalArgumentException() } // throw Exception 도 가능
+//    val strLenSafe3 = { s:String? -> s?.length ?: throw IllegalArgumentException("null!!") } // throw Exception 도 가능
 //    println(strLenSafe3(null))
 
     // 안전한 캐스트: as?
@@ -65,6 +70,7 @@ fun main() {
     // 널이 될 수 있는 타입 확장
     println("\n===== 널이 될 수 있는 타입 확장")
     fun Person?.isNullOrEmpty(): Boolean = this == null || this.name.isEmpty()
+
     val person3 = Person("leaf", null)
     println(person3.isNullOrEmpty())
     val person4: Person? = null
