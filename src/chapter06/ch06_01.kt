@@ -60,12 +60,13 @@ fun main() {
 
     // let 함수
     println("\n===== let 함수")
-    val sendEmailTo = { email: String? -> println("Sending email to $email") }
+    fun sendEmailTo(email: String) = println("Sending email to $email")
+
     val email: String? = "leaf@google.com"
     email?.let { sendEmailTo(it) }
     val email2: String? = null
     email2?.let { sendEmailTo(it) }
-    email2.let { sendEmailTo(it) } // ?. 가 없으면 email2 가 null 이여도 let 부문 실행
+//    email2.let { sendEmailTo(it) } // ?. 가 없으면 email2 가 null 이여도 let 부문 실행
 
     // 널이 될 수 있는 타입 확장
     println("\n===== 널이 될 수 있는 타입 확장")
