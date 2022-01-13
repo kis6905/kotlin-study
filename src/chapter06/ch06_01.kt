@@ -58,6 +58,10 @@ fun main() {
     ignoreNulls("hello")
 //    ignoreNulls(null) // !! 를 사용하는데 null 이면 NullPointerException 발생
 
+    val echo = { s: String -> println(s) }
+    val nullValue: String? = null
+    echo(nullValue!!)
+
     // let 함수
     println("\n===== let 함수")
     fun sendEmailTo(email: String) = println("Sending email to $email")
