@@ -25,6 +25,15 @@ fun main() {
     twoAndThree { x, y -> x * y }
 
     println("ab2c4d41".filter { it in 'a'..'z' })
+
+    println("\n======== 널이 될 수 있는 함수 타입 파라미터")
+    fun foo(callback: (() -> Unit)?) {
+//        callback() // 불가능
+        if (callback != null) {
+            callback() // null 체크 후 호출 가능
+        }
+        callback?.invoke() // 안전한 호출을 사용하는 방식도 가능
+    }
 }
 
 fun String.filter(predicate: (Char) -> Boolean): String {

@@ -20,6 +20,8 @@ fun main() {
     val people = listOf(Person("leaf", 34), Person("bob", 29))
     println(people.filter { it.age >= 30 }) // 컬렉션의 filter 는 inline 함수기 때문에 본문이 그대로 들어온다.
     println(people.filterWithoutInline { it.age >= 30 })
+
+    people.asSequence().filter { it.age >= 30 } // 시퀀스의 filter 같은 함수는 inline 함수가 아니다.
 }
 
 // inline 을 붙이면 이 함수를 호출하는 곳에 inline 함수의 본문이 그대로 들어간다.
