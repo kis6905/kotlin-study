@@ -1,18 +1,18 @@
 package chapter10
 
-import kotlin.reflect.KFunction
-import kotlin.reflect.full.*
-
 fun main() {
     println("리플렉션")
 
     val person = Person("leaf", 34)
     val kClass = person.javaClass.kotlin
     println(kClass.simpleName)
-    kClass.memberProperties.forEach { println(it.name) }
-    kClass.declaredFunctions.forEach {
-        it.call(person)
-    }
+    kClass.members.forEach { println(it.name) }
+//    kClass.memberProperties.forEach { println(it.name) }
+//    kClass.declaredFunctions.forEach {
+//        it.call(person)
+//    }
+
+    println("===============")
 
     val kFunction = ::foo
     kFunction.call(42)
@@ -21,10 +21,11 @@ fun main() {
     kProperty.set(20)
     println(kProperty.get())
 
-    val my1 = kProperty.findAnnotation<MyAnnotation>()
-    println(my1?.name)
-    println(my1?.defaultValue)
-
+    val annotations = kProperty.annotations
+    annotations
+        .filter { it.annotationClass.simpleName == MyAnnotation::class.java.simpleName }
+        .map { it as MyAnnotation }
+        .forEach { println(it.name) }
 }
 
 class Person(@property:MyAnnotation("name") val name: String, val age: Int) {
